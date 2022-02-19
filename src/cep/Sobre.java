@@ -1,12 +1,17 @@
 package cep;
 
-import java.awt.EventQueue;
-
-import javax.swing.JDialog;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.net.URI;
+
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class Sobre extends JDialog {
 
@@ -31,10 +36,11 @@ public class Sobre extends JDialog {
 	 * Create the dialog.
 	 */
 	public Sobre() {
+		setModal(true);
 		setResizable(false);
 		setTitle("Sobre");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Sobre.class.getResource("/img/home.png")));
-		setBounds(100, 100, 450, 300);
+		setBounds(150, 150, 450, 300);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Buscar CEP - Ver 1");
@@ -45,13 +51,89 @@ public class Sobre extends JDialog {
 		lblNewLabel_1.setBounds(48, 133, 208, 14);
 		getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_2.setToolTipText("Reposit\u00F3rio do projeto");
-		lblNewLabel_2.setIcon(new ImageIcon(Sobre.class.getResource("/img/github (2).png")));
-		lblNewLabel_2.setBounds(281, 99, 48, 48);
-		getContentPane().add(lblNewLabel_2);
+		JLabel btnGitHub = new JLabel("");
+		btnGitHub.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				link("https://github.com/diego-quack/Buscar_CEP/commits?author=diego-quack");
+			}
+		});
+		btnGitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGitHub.setToolTipText("Reposit\u00F3rio do projeto");
+		btnGitHub.setIcon(new ImageIcon(Sobre.class.getResource("/img/github (2).png")));
+		btnGitHub.setBounds(376, 202, 48, 48);
+		getContentPane().add(btnGitHub);
+		
+		JLabel lblWebService = new JLabel("WEB Service:");
+		lblWebService.setBounds(48, 158, 114, 14);
+		getContentPane().add(lblWebService);
+		
+		JLabel lblRepublicaVirtual = new JLabel("republicavirtual.com.br");
+		lblRepublicaVirtual.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				link("https://www.republicavirtual.com.br/");
+			}
+		});
+		lblRepublicaVirtual.setForeground(SystemColor.textHighlight);
+		lblRepublicaVirtual.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblRepublicaVirtual.setBounds(129, 158, 187, 14);
+		getContentPane().add(lblRepublicaVirtual);
 
 	}
+	
+	private void link(String site) {
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			URI uri = new URI(site);
+			desktop.browse(uri);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

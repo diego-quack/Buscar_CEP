@@ -138,6 +138,12 @@ public class Cep extends JFrame {
 		contentPane.add(btnCep);
 		
 		btnSobre = new JButton("");
+		btnSobre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sobre sobre = new Sobre();
+				sobre.setVisible(true);
+			}
+		});
 		btnSobre.setBackground(SystemColor.control);
 		btnSobre.setToolTipText("Sobre");
 		btnSobre.setBorder(null);
