@@ -126,6 +126,11 @@ public class Cep extends JFrame {
 		contentPane.add(cboUf);
 
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpar();
+			}
+		});
 		btnLimpar.setBackground(SystemColor.menu);
 		btnLimpar.setBounds(309, 69, 89, 23);
 		contentPane.add(btnLimpar);
@@ -193,9 +198,9 @@ public class Cep extends JFrame {
 				if (element.getQualifiedName().equals("logradouro")) {
 					logradouro = element.getText();
 				}
-				if(element.getQualifiedName().equals("resultado")) {
+				if (element.getQualifiedName().equals("resultado")) {
 					resultado = element.getText();
-					if(resultado.equals("0")) {
+					if (resultado.equals("0")) {
 						JOptionPane.showMessageDialog(null, "CEP não encontrado.");
 					}
 				}
@@ -206,7 +211,14 @@ public class Cep extends JFrame {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-
 	}
 
+	private void limpar() {
+		txtCep.setText(null);
+		txtEndereco.setText(null);
+		txtBairro.setText(null);
+		txtCidade.setText(null);
+		cboUf.setSelectedItem(null);
+		txtCep.requestFocus();
+	}
 }
