@@ -5,6 +5,10 @@ import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.Iterator;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -18,9 +22,11 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
 import Atxy2k.CustomTextField.RestrictedTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Cep extends JFrame {
@@ -129,7 +135,7 @@ public class Cep extends JFrame {
 					txtCep.requestFocus(); 
 				}
 				else {
-					
+					buscarCep();
 				}
 			}
 		});
@@ -155,6 +161,30 @@ public class Cep extends JFrame {
 		RestrictedTextField validar = new RestrictedTextField(txtCep);
 		validar.setOnlyNums(true);
 		validar.setLimit(8);
+	}
+	
+	private void buscarCep() {
+		String logradouro = " ";
+		String tipoLogradouro = " ";
+		String resultado = null;
+		String cep = txtCep.getText();
+		
+		try {
+			URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=xml");
+			SAXReader xml = new SAXReader();
+			Document documento = xml.read(url);
+			Element root = documento.getRootElement();
+			for(Iterator<Element> it = root.elementIterator(); it.hasNext();) {
+				Element element = it.next();
+				if(element.getQualifiedName().equals("cidade")) {
+					txtCidade.setText(element.getText());
+				}
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 	
 	
