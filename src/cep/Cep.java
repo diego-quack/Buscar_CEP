@@ -184,10 +184,19 @@ public class Cep extends JFrame {
 				if (element.getQualifiedName().equals("bairro")) {
 					txtBairro.setText(element.getText());
 				}
-				if(element.getQualifiedName().equals("uf")) {
+				if (element.getQualifiedName().equals("uf")) {
 					cboUf.setSelectedItem(element.getText());
 				}
+				if (element.getQualifiedName().equals("tipo_logradouro")) {
+					tipoLogradouro = element.getText();
+				}
+				if (element.getQualifiedName().equals("logradouro")) {
+					logradouro = element.getText();
+				}
 			}
+
+			txtEndereco.setText(tipoLogradouro + " " + logradouro);
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
