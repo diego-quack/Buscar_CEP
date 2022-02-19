@@ -193,6 +193,12 @@ public class Cep extends JFrame {
 				if (element.getQualifiedName().equals("logradouro")) {
 					logradouro = element.getText();
 				}
+				if(element.getQualifiedName().equals("resultado")) {
+					resultado = element.getText();
+					if(resultado.equals("0")) {
+						JOptionPane.showMessageDialog(null, "CEP não encontrado.");
+					}
+				}
 			}
 
 			txtEndereco.setText(tipoLogradouro + " " + logradouro);
