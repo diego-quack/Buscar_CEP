@@ -1,22 +1,26 @@
 package cep;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import java.awt.Cursor;
-import javax.swing.ImageIcon;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.EventQueue;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import Atxy2k.CustomTextField.RestrictedTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class Cep extends JFrame {
@@ -118,6 +122,17 @@ public class Cep extends JFrame {
 		contentPane.add(btnLimpar);
 		
 		JButton btnCep = new JButton("Buscar");
+		btnCep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCep.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "É preciso informar o CEP");
+					txtCep.requestFocus(); 
+				}
+				else {
+					
+				}
+			}
+		});
 		btnCep.setBackground(SystemColor.menu);
 		btnCep.setBounds(206, 69, 89, 23);
 		contentPane.add(btnCep);
@@ -130,5 +145,59 @@ public class Cep extends JFrame {
 		btnSobre.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSobre.setBounds(376, 202, 48, 48);
 		contentPane.add(btnSobre);
+		
+		RestrictedTextField validar = new RestrictedTextField(txtCep);
+		validar.setOnlyNums(true);
+		validar.setLimit(8);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
